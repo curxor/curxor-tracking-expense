@@ -16,7 +16,7 @@ const SignInScreen = () => {
   const router = useRouter();
 
   const onChange = (value: string) => {
-    setEmail(value);
+    setEmail(value.toLowerCase());
   };
 
   const onSubmit = () => {

@@ -1,12 +1,13 @@
 import { getProfileAPI, signInAPI, verifyAuthAPI } from "@/apis/auth.api";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-export const useGetProfile = () => {
+export const useGetProfile = (startDate: string, endDate: string) => {
   return useQuery({
-    queryKey: ["get-Profile"],
-    queryFn: () => getProfileAPI(),
+    queryKey: ["get-Profile", startDate, endDate],
+    queryFn: () => getProfileAPI(startDate, endDate),
   });
 };
+
 export const useSignIn = () => {
   return useMutation({
     mutationKey: ["sign-in"],

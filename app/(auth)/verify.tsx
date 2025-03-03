@@ -11,7 +11,9 @@ const VerifyScreen = () => {
   const { mutate, isPending } = useAuthVerify();
   const [otp, setOtp] = useState<string>("");
   const onChange = (value: string) => {
-    setOtp(value);
+    if (value.length <= 4) {
+      setOtp(value);
+    }
   };
   const onSubmit = async () => {
     if (!otp) {

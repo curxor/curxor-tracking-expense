@@ -8,12 +8,14 @@ export const signInAPI = (email: string) => {
 export const verifyAuthAPI = (data: IAuth) => {
   return axiosInstance.post("/auth/verify", data);
 };
-export const getProfileAPI = async () => {
+
+export const getProfileAPI = async (startDate: string, endDate: string) => {
   const response = await axiosInstance.get(
-    "/user/profile?startDate=2025-02-02&endDate=2025-02-28"
+    `/user/profile?startDate=${startDate}&endDate=${endDate}`
   );
   return response.data.data;
 };
+
 export const authAPI = async () => {
   const response = await axiosInstance.get("/auth/profile");
   return response.data.data;
