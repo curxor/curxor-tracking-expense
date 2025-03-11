@@ -19,6 +19,10 @@ export interface GetTransactionsParams {
   limit: number;
   page: number;
   search?: string;
+  category?: string | null;
+  startDate?: string;
+  endDate?: string;
+  minAmount?: number;
 }
 
 export interface Transaction {
@@ -38,11 +42,17 @@ export interface TransactionResponse {
   };
 }
 
-export const useGetTransactionsInfinity = (search: string = "") => {
+export const useGetTransactionsInfinity = (
+  params: Partial<GetTransactionsParams> = {}
+) => {
   return useInfiniteQuery<TransactionResponse, Error>({
-    queryKey: ["transactions", search],
+    queryKey: ["transactions", params],
     queryFn: ({ pageParam = 1 }) =>
-      getTransactionsAPI({ limit: 10, page: pageParam as number, search }),
+      getTransactionsAPI({
+        limit: 10,
+        page: pageParam as number,
+        ...params,
+      }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       if (lastPage.data.transactions.length < 10) return undefined;
@@ -50,12 +60,14 @@ export const useGetTransactionsInfinity = (search: string = "") => {
     },
   });
 };
+
 export const useTransactionDetails = (_id: string) => {
   return useQuery({
     queryKey: ["transactions", _id],
     queryFn: () => getTransactionDetailsAPI(_id),
   });
 };
+
 export const useEditTransaction = () => {
   return useMutation({
     mutationFn: (transaction: ITransaction) => {
@@ -64,6 +76,7 @@ export const useEditTransaction = () => {
     mutationKey: ["edit-transactions"],
   });
 };
+
 export const useDeleteTransaction = () => {
   return useMutation({
     mutationFn: (id: string) => {

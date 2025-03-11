@@ -35,10 +35,8 @@ const HomeScreen: React.FC = () => {
     search: "",
   });
 
-  const onValueChange = (_event: any, newDate?: Date) => {
-    if (newDate) {
-      setSelectedDate(newDate);
-    }
+  const onValueChange = (newDate: Date) => {
+    setSelectedDate(newDate);
     setShowPicker(false);
   };
 

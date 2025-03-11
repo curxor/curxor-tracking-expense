@@ -3,8 +3,13 @@ import axiosInstance from "../services/axios";
 export interface getTransactions {
   limit: number;
   page: number;
-  search: string | undefined;
+  search?: string;
+  category?: string | null;
+  startDate?: string;
+  endDate?: string;
+  minAmount?: number;
 }
+
 export const getTransactionsAPI = async (getTransactions: getTransactions) => {
   const response = await axiosInstance.get("/transaction", {
     params: getTransactions,
