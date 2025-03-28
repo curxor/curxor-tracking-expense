@@ -7,6 +7,7 @@ import Toast from "react-native-toast-message";
 import { useRouter } from "expo-router";
 import { useSignIn } from "@/hooks/auth.hook";
 import LoginWith from "@/components/button/login-button";
+import { MOCK_OTP } from "@/mocks/otp.mock";
 
 const emailSchema = z.string().email({ message: "Invalid email address" });
 
@@ -39,10 +40,21 @@ const SignInScreen = () => {
           text1: e.response.data.message,
         });
       },
+      // onSuccess: () => {
+      //   router.push({
+      //     pathname: "/(auth)/verify",
+      //     params: { email },
+      //   });
+      // },
       onSuccess: () => {
+        Toast.show({
+          type: "success",
+          text1: "Sign in successful",
+        });
         router.push({
           pathname: "/(auth)/verify",
           params: { email },
+          // params: { email, otp: MOCK_OTP },
         });
       },
     });

@@ -21,7 +21,8 @@
       "bundler": "metro",
       "buildOutput": "web-build",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "port": 8082 
     },
     "plugins": [
       "expo-router",

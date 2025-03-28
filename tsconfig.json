@@ -1,17 +1,40 @@
+// {
+//   "extends": "expo/tsconfig.base",
+//   "compilerOptions": {
+//     "jsx": "react",
+//     "strict": true,
+//     "paths": {
+//       "@/*": ["./*"]
+//     }
+//   },
+//   "include": [
+//     "**/*.ts",
+//     "**/*.tsx",
+//     ".expo/types/**/*.ts",
+//     "expo-env.d.ts",
+//     "nativewind-env.d.ts"
+// , "tsconfig.spec.json"  ]
+// }
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "jsx": "react",
-    "strict": true,
+    "jsx": "react", // Hỗ trợ JSX cho React
+    "strict": true, // Bật chế độ kiểm tra kiểu chặt chẽ
+    "types": ["@playwright/test"], // Thêm types cho Playwright để tránh lỗi ReferenceError
+    "module": "esnext", // Sử dụng chuẩn ESNext cho module
+    "target": "esnext", // Dịch sang mã ESNext để tương thích với môi trường mới
+    "skipLibCheck": true, // Bỏ qua việc kiểm tra các tệp thư viện để tăng tốc biên dịch
+    "esModuleInterop": true, // Cho phép import các module CommonJS
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"] // Định nghĩa alias cho đường dẫn
     }
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "nativewind-env.d.ts"
-, "tsconfig.spec.json"  ]
+    "**/*.ts", // Bao gồm tất cả các file TypeScript
+    "**/*.tsx", // Bao gồm tất cả các file TypeScript cho React
+    ".expo/types/**/*.ts", // Bao gồm các kiểu dữ liệu từ Expo
+    "expo-env.d.ts", // Bao gồm kiểu dữ liệu cho môi trường Expo
+    "nativewind-env.d.ts", // Bao gồm kiểu dữ liệu cho NativeWind
+    "tsconfig.spec.json" // Bao gồm cấu hình cho test
+  ]
 }
