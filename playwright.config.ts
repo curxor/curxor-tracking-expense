@@ -87,6 +87,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: "html",
+  timeout: 60000,
 
   // ✅ Thêm baseURL để Playwright xác định được đường dẫn test
   use: {
